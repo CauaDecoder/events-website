@@ -1,162 +1,58 @@
-# ✨ Convitê — Plataforma de Convites Digitais
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Plataforma gratuita para criar, personalizar e compartilhar convites digitais interativos para qualquer tipo de evento — casamentos, aniversários, formaturas, chás de bebê e mais.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-> **Status:** MVP em construção · Landing Page ✅ · Convite Público 🔜
+## About Laravel
 
----
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## 🧱 Arquitetura
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-O projeto é um **monorepo pnpm** com duas aplicações:
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-```
-events_website/
-├── apps/
-│   ├── web/          # Frontend — Next.js 15 (App Router, TypeScript)
-│   └── api/          # Backend  — FastAPI (Python 3.12+)
-├── docs/             # Decisões de produto e handoffs
-├── design_inspiration/  # Referências visuais (não versionadas em prod)
-├── scripts/          # Scripts auxiliares de dev
-└── package.json      # Workspace root
-```
+## Learning Laravel
 
-### Stack
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-| Camada | Tecnologia | Notas |
-|---|---|---|
-| **Frontend** | Next.js 15, React 19, TypeScript | Vanilla CSS (sem Tailwind), fontes Fraunces + Manrope + IBM Plex Mono |
-| **Ícones** | lucide-react | Ícones SVG otimizados |
-| **Backend** | FastAPI, Pydantic v2 | Repositório in-memory por enquanto (PostgreSQL planejado) |
-| **Gerenciador** | pnpm 10 | Monorepo via pnpm workspaces |
+In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
----
+You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
 
-## 🚀 Como rodar localmente
+## Agentic Development
 
-### Pré-requisitos
-
-- **Node.js** ≥ 18 ([download](https://nodejs.org/))
-- **pnpm** ≥ 10 (`npm install -g pnpm` ou `corepack enable`)
-- **Python** ≥ 3.12 ([download](https://www.python.org/downloads/)) — apenas se for rodar o backend
-
-### 1. Clone o repositório
+Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
 
 ```bash
-git clone https://github.com/SEU-USUARIO/events_website.git
-cd events_website
+composer require laravel/boost --dev
+
+php artisan boost:install
 ```
 
-### 2. Instale as dependências do frontend
+Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
 
-```bash
-pnpm install
-```
+## Contributing
 
-### 3. Rode o frontend (Next.js)
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-```bash
-pnpm dev:web
-```
+## Code of Conduct
 
-Acesse: **http://localhost:3000**
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-### 4. (Opcional) Rode o backend (FastAPI)
+## Security Vulnerabilities
 
-```bash
-cd apps/api
-python -m venv .venv
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-# Windows
-.venv\Scripts\activate
+## License
 
-# macOS / Linux
-source .venv/bin/activate
-
-pip install -e .
-uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
-```
-
-Acesse:
-- API: **http://localhost:8000**
-- Health check: **http://localhost:8000/health**
-- Swagger (docs interativos): **http://localhost:8000/docs**
-
-### 5. Rode tudo junto (frontend + backend)
-
-```bash
-pnpm dev
-```
-
-> **Nota:** Este comando usa o script `scripts/dev.mjs` para subir ambos os servidores simultaneamente. Pode falhar em alguns ambientes Windows — nesse caso, rode cada serviço separadamente (passos 3 e 4).
-
----
-
-## 🎨 Design System
-
-O projeto segue um design system baseado em **Vanilla CSS** com variáveis customizadas:
-
-- **Light mode** (padrão): tons terrosos suaves — fundo `#f5efe5`, acentos terracota `#8f4c3f`
-- **Dark mode**: fundo `#0f1115` com acentos terracota claro `#e58775`
-- **Toggle**: o usuário alterna entre temas e a preferência é salva no `localStorage`
-
-Referências visuais (na pasta `design_inspiration/`):
-- Nomad, Instaclustr → direção da landing page
-- Aislinn Kate → tom visual dos convites (elegante, tons terrosos)
-- Amanah, Untitled UI, Origin → painel do organizador
-
----
-
-## 📁 Scripts disponíveis
-
-| Comando | O que faz |
-|---|---|
-| `pnpm dev:web` | Sobe o frontend (Next.js) em modo dev |
-| `pnpm build:web` | Build de produção do frontend |
-| `pnpm dev` | Sobe frontend + backend simultaneamente |
-
----
-
-## 🗺️ Decisões do MVP
-
-- **Multi-evento** desde o MVP (casamento, aniversário, formatura, debutante, chá de bebê, corporativo)
-- **RSVP aberto** — convidados não precisam criar conta
-- **Módulos ativáveis**: RSVP, Lista de Presentes, Contagem Regressiva, Agenda/Timeline, FAQ
-- **Autenticação** (e-mail + senha, Google OAuth) — planejada, ainda não implementada
-- **Monetização**: AdSense apenas no painel do organizador (fora do MVP)
-- **Pagamentos**: fora do MVP
-- **Idioma inicial**: PT-BR
-
----
-
-## 📋 Roadmap
-
-- [x] Landing Page (Hero, Tipos de Evento, Funcionalidades, Como Funciona, Footer)
-- [x] Dark/Light mode com persistência
-- [ ] Página do Convite Público (`/evento/[slug]`)
-- [ ] Painel do Organizador (dashboard, criar/editar evento)
-- [ ] Autenticação (e-mail + senha, Google OAuth)
-- [ ] Migração para PostgreSQL + SQLAlchemy/SQLModel
-- [ ] Deploy (Vercel + Railway/Render)
-
----
-
-## 🤝 Contribuindo
-
-1. Crie uma branch a partir da `main`: `git checkout -b feat/minha-feature`
-2. Faça suas alterações seguindo o design system existente
-3. Rode `pnpm build:web` para garantir que não há erros de TypeScript
-4. Abra um Pull Request descrevendo o que mudou
-
-### Convenções
-
-- **CSS**: Vanilla CSS com variáveis (sem Tailwind, sem CSS-in-JS)
-- **Componentes**: um arquivo por componente em `apps/web/components/`
-- **Seções da landing**: em `apps/web/components/sections/`
-- **Commits**: mensagens descritivas em português ou inglês
-
----
-
-## 📄 Licença
-
-Este projeto ainda não possui uma licença definida. Todos os direitos reservados por enquanto.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
