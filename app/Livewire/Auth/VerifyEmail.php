@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Auth;
 
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -25,6 +26,7 @@ final class VerifyEmail extends Component
 
         auth()->user()->sendEmailVerificationNotification();
         $this->sent = true;
+        Flux::toast(heading: 'E-mail reenviado', text: 'Confira também sua caixa de spam.', variant: 'success');
     }
 
     public function render(): View

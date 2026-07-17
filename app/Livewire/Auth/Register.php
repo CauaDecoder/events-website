@@ -6,6 +6,7 @@ namespace App\Livewire\Auth;
 
 use App\Livewire\Forms\Users\RegisterForm;
 use App\Modules\Identity\Application\Services\RegisterUserService;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
@@ -25,6 +26,12 @@ final class Register extends Component
 
         Auth::login($user);
         session()->regenerate();
+
+        Flux::toast(
+            heading: 'Conta criada com sucesso',
+            text: 'Agora confirme o endereço enviado para seu e-mail.',
+            variant: 'success',
+        );
 
         $this->redirectRoute('verification.notice', navigate: true);
     }

@@ -11,6 +11,7 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 final class AuthenticationTest extends TestCase
@@ -60,8 +61,23 @@ final class AuthenticationTest extends TestCase
             ->set('form.email', 'user@example.com')
             ->set('form.password', 'invalid-password')
             ->call('authenticate')
-            ->assertHasErrors('email');
+            ->assertHasErrors('form.email')
+            ->assertSee(__('auth.failed'));
 
         $this->assertGuest();
+    }
+
+    public function test_super_admin_is_redirected_to_admin_panel(): void
+    {
+        setPermissionsTeamId(0);
+        $role = Role::query()->create(['team_id' => 0, 'name' => 'super-admin', 'guard_name' => 'web']);
+        $admin = User::factory()->create(['email' => 'admin@example.com', 'password' => 'password']);
+        $admin->assignRole($role);
+
+        Livewire::test(Login::class)
+            ->set('form.email', $admin->email)
+            ->set('form.password', 'password')
+            ->call('authenticate')
+            ->assertRedirect(route('admin.dashboard'));
     }
 }

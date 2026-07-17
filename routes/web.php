@@ -11,6 +11,13 @@ Route::get('/', function () {
         return redirect()->route('verification.notice');
     }
 
+    setPermissionsTeamId((int) session('tenant_id', 0));
+    auth()->user()->unsetRelation('roles')->unsetRelation('permissions');
+
+    if (auth()->user()->hasRole('super-admin')) {
+        return redirect()->route('admin.dashboard');
+    }
+
     return redirect()->route('client.dashboard');
 });
 

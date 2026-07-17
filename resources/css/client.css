@@ -8,3 +8,17 @@
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-accent: #e58775;
+    --color-accent-content: #b85240;
+    --color-accent-foreground: #1c1917;
+}
+
+@layer theme {
+    .dark {
+        --color-accent: #e58775;
+        --color-accent-content: #f1ad9e;
+        --color-accent-foreground: #1c1917;
+    }
+}
