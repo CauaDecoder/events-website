@@ -1,9 +1,60 @@
 @import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+    --color-brand-50: #fff7f4;
+    --color-brand-100: #fde9e3;
+    --color-brand-200: #f8cfc4;
+    --color-brand-300: #f1ad9e;
+    --color-brand-400: #e58775;
+    --color-brand-500: #d86d59;
+    --color-brand-600: #b85240;
+    --color-brand-700: #963f32;
+    --color-brand-800: #7d382f;
+    --color-brand-900: #69342d;
+    --color-accent: #e58775;
+    --color-accent-content: #b85240;
+    --color-accent-foreground: #ffffff;
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer theme {
+    .dark {
+        --color-accent: #e58775;
+        --color-accent-content: #f1ad9e;
+        --color-accent-foreground: #1c1917;
+    }
+}
+
+@layer components {
+    .auth-card {
+        @apply relative w-full rounded-[1.75rem] border border-stone-200/80 bg-white p-7 shadow-[0_24px_70px_-32px_rgba(28,25,23,0.35)] dark:border-white/10 dark:bg-zinc-900 sm:p-9;
+    }
+
+    .auth-orbit {
+        animation: auth-float 8s ease-in-out infinite;
+    }
+
+    .auth-orbit-delayed {
+        animation: auth-float 10s ease-in-out 1.5s infinite reverse;
+    }
+}
+
+@keyframes auth-float {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -12px, 0) rotate(4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-orbit,
+    .auth-orbit-delayed {
+        animation: none;
+    }
 }

@@ -6,6 +6,4 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-final class AuthServiceProvider extends ServiceProvider
-{
-}
+final class AuthServiceProvider extends ServiceProvider {}

@@ -2,4 +2,7 @@
 
 declare(strict_types=1);
 
-// Endpoints públicos consumidos pelo frontend Next.js.
+use App\Http\Controllers\Api\V1\Public\HealthController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/health', HealthController::class)->name('health');

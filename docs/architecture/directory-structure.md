@@ -29,6 +29,6 @@
 
 ## Estado da plataforma
 
-O `composer.json` existente exige Laravel `^13.8`. A arquitetura alvo exige
-Laravel 12; a dependência não foi alterada porque esta etapa cria somente o
-esqueleto e um downgrade deve ser tratado como mudança explícita de runtime.
+A plataforma usa Laravel 13, Livewire 4, Flux UI 2 e Tailwind CSS 4.2 ou
+superior. Os componentes Flux são utilizados nas views Blade dos painéis; as
+regras de negócio permanecem independentes da camada visual.

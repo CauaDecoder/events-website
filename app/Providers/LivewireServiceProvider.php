@@ -6,6 +6,4 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-final class LivewireServiceProvider extends ServiceProvider
-{
-}
+final class LivewireServiceProvider extends ServiceProvider {}

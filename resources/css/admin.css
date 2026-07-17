@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../../app/Livewire/Admin/**/*.php';
+@source '../../app/Livewire/Shared/**/*.php';
+@source '../views/livewire/admin/**/*.blade.php';
+@source '../views/livewire/shared/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
