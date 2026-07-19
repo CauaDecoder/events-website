@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
+@import './components/navigation.css';
 
 @source '../../app/Livewire/Admin/**/*.php';
 @source '../../app/Livewire/Shared/**/*.php';

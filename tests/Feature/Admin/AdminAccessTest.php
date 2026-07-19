@@ -23,6 +23,7 @@ final class AdminAccessTest extends TestCase
         $admin->assignRole(Role::query()->where('name', 'super-admin')->where('team_id', 0)->firstOrFail());
 
         $this->actingAs($admin)->get('/admin')->assertOk();
+        $this->actingAs($admin)->get('/admin/subscriptions')->assertOk();
     }
 
     public function test_regular_client_cannot_access_admin_panel(): void
@@ -30,5 +31,6 @@ final class AdminAccessTest extends TestCase
         $this->seed(RoleSeeder::class);
 
         $this->actingAs(User::factory()->create())->get('/admin')->assertForbidden();
+        $this->actingAs(User::factory()->create())->get('/admin/subscriptions')->assertForbidden();
     }
 }

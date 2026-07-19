@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('site_publications', function (Blueprint $table): void {
+            $table->id();
+            $table->foreignId('site_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('published_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->unsignedInteger('version');
+            $table->json('payload');
+            $table->string('checksum', 64);
+            $table->timestamp('published_at');
+            $table->timestamps();
+            $table->unique(['site_id', 'version']);
+            $table->index(['site_id', 'published_at']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('site_publications');
+    }
+};

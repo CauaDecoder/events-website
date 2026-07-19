@@ -16,13 +16,11 @@ final readonly class ResolveTenant
 
     public function handle(Request $request, Closure $next): Response
     {
-        $tenantId = $request->header('X-Tenant-ID') ?? $request->session()->get('tenant_id');
-
-        if (! is_string($tenantId) && ! is_int($tenantId)) {
-            throw new TenantNotResolvedException;
-        }
-
-        $this->context->set($tenantId);
+        $user = $request->user() ?? throw new TenantNotResolvedException;
+        $tenant = $this->context->resolveFor($user, $request->header('X-Tenant-ID') ?? $request->session()->get('tenant_id'));
+        $request->session()->put('tenant_id', $tenant->id);
+        setPermissionsTeamId($tenant->id);
+        $user->unsetRelation('roles')->unsetRelation('permissions');
 
         try {
             return $next($request);

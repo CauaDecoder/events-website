@@ -6,6 +6,7 @@ namespace App\Livewire\Auth;
 
 use App\Livewire\Forms\Users\LoginForm;
 use App\Modules\Identity\Application\Services\AuthenticateUserService;
+use App\Support\Tenancy\TenantContext;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -42,8 +43,12 @@ final class Login extends Component
 
         Auth::login($user, $this->form->remember);
         session()->regenerate();
-        session()->put('tenant_id', 0);
-        setPermissionsTeamId(0);
+        $tenantId = 0;
+        if (! $user->hasRole('super-admin')) {
+            $tenantId = app(TenantContext::class)->resolveFor($user)->id;
+        }
+        session()->put('tenant_id', $tenantId);
+        setPermissionsTeamId($tenantId);
         $user->unsetRelation('roles')->unsetRelation('permissions');
 
         $destination = $user->hasRole('super-admin')

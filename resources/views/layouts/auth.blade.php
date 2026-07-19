@@ -11,7 +11,8 @@
         @fluxAppearance
     </head>
     <body class="min-h-screen bg-[#f7f4f1] antialiased dark:bg-zinc-950">
-        <div class="grid min-h-screen lg:grid-cols-[minmax(23rem,0.88fr)_1.35fr]">
+        <x-page-loader />
+        <div data-page-transition class="grid min-h-screen lg:grid-cols-[minmax(23rem,0.88fr)_1.35fr]">
             <aside class="relative hidden overflow-hidden bg-[#1c1917] p-12 text-white lg:flex lg:flex-col lg:justify-between xl:p-16">
                 <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
                     <div class="auth-orbit absolute -right-28 -top-24 size-80 rounded-full border-[44px] border-[#e58775]"></div>

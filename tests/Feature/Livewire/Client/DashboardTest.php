@@ -20,6 +20,8 @@ final class DashboardTest extends TestCase
 
         Livewire::test(Index::class)
             ->assertOk()
-            ->assertSee('Vamos criar algo especial?');
+            ->assertSee('Seu espaço de criação')
+            ->assertSee('Crie algo memorável')
+            ->assertSee('Projetos recentes');
     }
 }

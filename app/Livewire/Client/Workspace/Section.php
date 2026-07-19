@@ -34,7 +34,6 @@ final class Section extends Component
     private function sections(): array
     {
         return [
-            'events' => ['title' => 'Eventos', 'description' => 'Crie e organize seus eventos.', 'icon' => 'calendar-days'],
             'sites' => ['title' => 'Sites', 'description' => 'Personalize as experiências públicas dos eventos.', 'icon' => 'window'],
             'media' => ['title' => 'Mídia', 'description' => 'Organize imagens e outros arquivos.', 'icon' => 'photo'],
             'domains' => ['title' => 'Domínios', 'description' => 'Conecte e acompanhe seus domínios personalizados.', 'icon' => 'globe-alt'],

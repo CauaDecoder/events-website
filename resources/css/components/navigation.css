@@ -1,0 +1,68 @@
+@layer components {
+    .page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background: color-mix(in srgb, #f7f4f1 92%, transparent);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 180ms ease, visibility 180ms ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .dark .page-loader {
+        background: color-mix(in srgb, #09090b 91%, transparent);
+    }
+
+    .page-loader.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .page-loader__mark {
+        position: relative;
+        display: grid;
+        width: 3.5rem;
+        height: 3.5rem;
+        place-items: center;
+        border-radius: 1.15rem;
+        background: #e58775;
+        color: #1c1917;
+        font-weight: 700;
+        box-shadow: 4px 4px 0 rgb(28 25 23 / 18%);
+    }
+
+    .page-loader__mark::after {
+        position: absolute;
+        inset: -0.55rem;
+        border: 2px solid rgb(229 135 117 / 22%);
+        border-top-color: #e58775;
+        border-radius: 9999px;
+        content: '';
+        animation: page-loader-spin 750ms linear infinite;
+    }
+
+    body.page-is-entering [data-page-transition] {
+        animation: page-enter 360ms cubic-bezier(.2, .7, .2, 1) both;
+    }
+}
+
+@keyframes page-loader-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes page-enter {
+    from { opacity: 0; transform: translateY(7px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-loader,
+    .page-loader__mark::after,
+    body.page-is-entering [data-page-transition] {
+        animation: none;
+        transition: none;
+    }
+}
